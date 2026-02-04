@@ -1,0 +1,100 @@
+.card {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    /* Slight hover effect */
+}
+
+/* Status Icon area */
+.statusIcon {
+    cursor: pointer;
+    padding-top: 2px;
+    flex-shrink: 0;
+}
+
+.content {
+    flex: 1;
+    min-width: 0;
+    /* Prevents overflow */
+}
+
+.title {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--primary-blue);
+    margin-bottom: 4px;
+    word-wrap: break-word;
+}
+
+.completedTitle {
+    text-decoration: line-through;
+    color: var(--text-muted);
+}
+
+.description {
+    font-size: 14px;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+    white-space: pre-wrap;
+}
+
+.date {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    opacity: 0;
+    /* Hidden by default until hover as per Figma analysis implies or common pattern */
+    transition: opacity 0.2s;
+}
+
+/* Show actions on hover and on mobile (since no hover) we might need to change this logic.
+   For mobile-first, always showing might be better or relying on swipe.
+   Given the requirement "Edit Task: Provide an option...", let's keep it simple.
+   The Figma analysis said "When hovering over a task... icons appear".
+   But on mobile touch, hover isn't reliable.
+   I'll make them visible on hover for desktop, and always visible or conditional for mobile.
+   Actually, let's just make them always visible but subtle, or ensure :hover works on touch (tap).
+   Or improved: set opacity 1 on .card:hover .actions
+*/
+.card:hover .actions {
+    opacity: 1;
+}
+
+@media (hover: none) {
+    .actions {
+        opacity: 1;
+        /* Always show on touch devices */
+    }
+}
+
+.actionBtn {
+    padding: 4px;
+    background: #F0F4FF;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.actionBtn:hover {
+    background: #D9E4FF;
+}
