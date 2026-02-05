@@ -1,65 +1,53 @@
+/* Removed .overlay since it's now in-app navigation style */
 .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
     display: flex;
-    align-items: flex-end;
-    /* Bottom sheet style on mobile, centered on desktop? */
-    justify-content: center;
-    z-index: 1000;
+    flex-direction: column;
 }
 
 .container {
-    background: white;
     width: 100%;
-    max-width: 480px;
     height: 100%;
-    /* Full screen on mobile often looks better */
-    max-height: 90vh;
-    /* Or full height */
-    border-radius: 16px 16px 0 0;
-    padding: 24px;
     display: flex;
     flex-direction: column;
-    animation: slideUp 0.3s ease-out;
-}
-
-@media (min-width: 481px) {
-    .overlay {
-        align-items: center;
-    }
-
-    .container {
-        height: auto;
-        border-radius: 16px;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-    }
-}
-
-@keyframes slideUp {
-    from {
-        transform: translateY(100%);
-    }
-
-    to {
-        transform: translateY(0);
-    }
+    background: white;
 }
 
 .header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin-bottom: 32px;
+    gap: 16px;
+    padding: 16px 24px;
+    background: var(--primary-blue);
+    color: white;
+    /* Negative margin to pull header to edges of padded app container */
+    /* Ensure App container has overflow: hidden or similar if this causes scroll */
+    margin-left: -24px;
+    margin-right: -24px;
+    margin-top: -24px;
+    margin-bottom: 24px;
+    box-sizing: border-box;
+    /* Explicitly set box-sizing */
+}
+
+.backBtn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
 }
 
 .heading {
-    font-size: 20px;
-    color: var(--primary-blue);
-    font-weight: 700;
+    font-family: 'Jost', sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: white;
 }
 
 .form {
@@ -67,6 +55,151 @@
     flex-direction: column;
     gap: 20px;
     flex: 1;
+    padding: 0;
+    /* Removing side padding from form container itself if parent handles it? No, parent padding is negated by margins for header. Form needs its own padding? */
+    /* Wait, the container is inside appContainer which has padding: 24px. 
+       Negative margin pulls header out.
+       The form body is under the header. It sits inside .container div. 
+       .container div is inside .overlay div inside appContainer.
+       So .container width is 100% of appContainer content box.
+       Header with negative margins expands BEYOND content box to fill padding area.
+       The Form body (inputs) default to content box width (inside padding).
+       But if I want form body to align with header content (24px padding inside header), 
+       I should probably keep form padding 0? 
+       Wait, appContainer padding is 24px. So regular content aligns at 24px.
+       The header padding-left is 24px.
+       If header expands to edge (-24px), then 24px padding inside header brings text back to alignment?
+       Left edge: -24px (start) + 24px (padding) = 0 (original content start). Yes.
+       Functionally, Header text aligns with App content.
+       
+       Now the form inputs.
+       .form has padding: 0 24px 24px 24px.
+       Since .form is inside .container (width 100%), it starts at 0 (content start).
+       So adding 24px padding pushes inputs INWARD by 24px relative to content start.
+       Result: Inputs are narrower than Task List?
+       Task List likely fills width (0px extra padding).
+       So .form should likely have padding: 0? 
+       Or maybe just padding-bottom?
+       If I remove side padding from .form, inputs will align with Task List.
+       
+       Let's attempt to remove side padding from .form to match "Task List form display".
+    */
+    padding: 0 0 24px 0;
+}
+
+/* ... existing styles ... */
+
+.textarea {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border-light);
+    font-size: 12px;
+    /* Updated to 12px */
+    font-family: 'Jost', sans-serif;
+    /* Updated to Jost */
+    font-weight: 400;
+    /* Regular */
+    line-height: 100%;
+    resize: vertical;
+    /* Allow vertical resize only */
+    outline: none;
+    width: 100%;
+    /* Force full width */
+    box-sizing: border-box;
+    /* Include padding in width */
+    color: var(--text-dark);
+    /* Ensure text color */
+}
+
+/* New class for Input component */
+.inputControl {
+    font-family: 'Jost', sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 400 !important;
+    line-height: 100% !important;
+}
+
+.textarea:focus {
+    border-color: var(--primary-blue);
+}
+
+/* Custom Select Styles */
+.customSelect {
+    position: relative;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid var(--border-light);
+    background: white;
+    width: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.selectedValue {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 100%;
+    color: var(--text-dark);
+}
+
+.dropdownOptions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    margin-top: 4px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    z-index: 10;
+    overflow: hidden;
+}
+
+.optionItem {
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-dark);
+    transition: background-color 0.2s;
+}
+
+.optionItem:hover {
+    background-color: var(--bg-light);
+}
+
+.statusDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dotPending {
+    background-color: #D0D0D0;
+    /* Light Gray */
+}
+
+.dotInProgress {
+    background-color: #FFB03C;
+    /* Warm Orange/Amber */
+}
+
+.dotCompleted {
+    background-color: #368A04;
+    /* Darker Green */
 }
 
 .textAreaGroup,
@@ -74,40 +207,26 @@
     display: flex;
     flex-direction: column;
     gap: 6px;
-}
-
-.label {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--text-dark);
-}
-
-.textarea {
-    padding: 12px;
-    border-radius: 8px;
-    border: 1px solid var(--border-light);
-    font-size: 16px;
-    font-family: inherit;
-    resize: none;
-    outline: none;
-}
-
-.textarea:focus {
-    border-color: var(--primary-blue);
-}
-
-.select {
-    padding: 12px;
-    border-radius: 8px;
-    border: 1px solid var(--border-light);
-    font-size: 16px;
-    background: white;
+    width: 100%;
 }
 
 .actions {
     margin-top: auto;
-    /* Push to bottom */
     display: flex;
-    gap: 16px;
+    justify-content: space-between;
+    gap: 12px;
     padding-top: 24px;
+    width: 100%;
+    /* Ensure full width container */
+}
+
+/* Reduce button size and text for form actions */
+.actions button {
+    padding: 8px 16px !important;
+    /* Reduced padding from likely default 12px 24px */
+    font-size: 14px !important;
+    /* Reduced font size from likely 16px */
+    height: auto !important;
+    /* Allow height to adjust */
+    font-weight: 500;
 }

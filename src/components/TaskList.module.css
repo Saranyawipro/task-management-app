@@ -9,7 +9,17 @@
 .accordion {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    /* Removed gap to let header and content touch if needed, or keep small gap? 
+       User said "only accordion heading needs background". 
+       Let's keep structure but clear bg/padding.
+    */
+    gap: 0;
+    background: transparent;
+    padding: 0;
+    border-radius: 3px;
+    border: none;
+    /* Removed border as it might look weird if only header has bg */
+    min-height: 36px;
 }
 
 .header {
@@ -17,13 +27,29 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    padding: 8px 0;
+    padding: 12px 16px;
     text-align: left;
+    background: #F0F4FF;
+    /* Reverted to original light blueish/gray default or standard */
+    /* Wait, original was #F0F4FF based on step 309 view_file of TaskList.module.css */
+    border-radius: 3px;
 }
 
+
+.titleGroup {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+
 .sectionTitle {
-    font-size: 18px;
-    font-weight: 700;
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 100%;
+    letter-spacing: 0%;
+    vertical-align: middle;
     color: var(--text-dark);
 }
 
@@ -36,7 +62,7 @@
 .content {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 0;
 }
 
 .itemWrapper {
@@ -54,6 +80,12 @@
         transform: translateY(0);
     }
 }
+
+
+.itemWrapper:last-child>div>.card {
+    border-bottom: none;
+}
+
 
 .emptyText {
     color: var(--text-muted);

@@ -1,6 +1,6 @@
 .appContainer {
     min-height: 100vh;
-    background-color: var(--bg-color);
+    background-color: white;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -9,12 +9,67 @@
 
 .header {
     margin-bottom: 32px;
+    margin: -24px -24px 0 -24px;
 }
 
 .appTitle {
-    font-size: 28px;
-    font-weight: 800;
+    font-family: 'Jost', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 100%;
+    letter-spacing: 0%;
+    vertical-align: middle;
+    color: white;
+    background: var(--primary-blue);
+    padding: 20px 24px;
+    margin: 0;
+}
+
+.searchContainer {
+    position: relative;
+    margin-top: 0;
+    padding: 16px 24px;
+    background: white;
+}
+
+.searchIcon {
+    position: absolute;
+    left: 36px;
+    top: 50%;
+    transform: translateY(-50%);
     color: var(--primary-blue);
+    pointer-events: none;
+}
+
+.searchInput {
+    width: 100%;
+    height: 40px;
+    padding: 0 12px 0 40px;
+    border-radius: 8px;
+    border: 1px solid var(--border-light);
+    background: white;
+    font-family: 'Lato', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 12px;
+    letter-spacing: 0.6px;
+    text-transform: capitalize;
+    outline: none;
+    transition: all 0.2s;
+}
+
+.searchInput:focus {
+    border-color: var(--primary-blue);
+}
+
+.searchInput::placeholder {
+    color: var(--text-muted);
+    font-family: 'Lato', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 12px;
+    letter-spacing: 0.6px;
+    text-transform: capitalize;
 }
 
 .main {

@@ -39,6 +39,11 @@
     border-color: var(--primary-blue);
 }
 
+.active:hover {
+    background: var(--primary-blue);
+    color: white;
+}
+
 .badge {
     font-size: 12px;
     opacity: 0.8;

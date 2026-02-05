@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&family=Lato:wght@400;700&display=swap');
+
 :root {
   --primary-blue: #004AAD;
   --bg-color: #F5F5F5;
@@ -5,7 +7,7 @@
   --text-dark: #333333;
   --text-muted: #888888;
   --border-light: #E0E0E0;
-  
+
   --status-pending: #888888;
   --status-progress: #F5A623;
   --status-completed: #2ECC71;
@@ -24,7 +26,8 @@
 body {
   margin: 0;
   display: flex;
-  place-items: center; /* Centering for desktop, but we need full width usually */
+  place-items: center;
+  /* Centering for desktop, but we need full width usually */
   min-width: 320px;
   min-height: 100vh;
   background-color: var(--bg-color);
@@ -33,14 +36,21 @@ body {
 
 #root {
   width: 100%;
-  max-width: 480px; /* Mobile-first container as per probable Figma mobile layouts */
+  max-width: 480px;
+  /* Mobile-first container as per probable Figma mobile layouts */
   margin: 0 auto;
-  background-color: var(--bg-color); /* Matches body */
+  background-color: var(--bg-color);
+  /* Matches body */
   min-height: 100vh;
   position: relative;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0;
 }
 
