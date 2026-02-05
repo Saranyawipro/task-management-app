@@ -1,73 +1,65 @@
-# React + TypeScript + Vite
+# Task Management App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, high-performance **Task Management Application** built with React 19, TypeScript, and Vite. This project focuses on providing a premium user experience through smooth animations, clean typography, and intuitive task workflows.
 
-Currently, two official plugins are available:
+## 🚀 Live Demo
+[Insert your Vercel/Netlify URL here]
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Key Features
+- **Categorized Dashboard**: Tasks are grouped into "Pending", "In Progress", and "Completed" with real-time status counts.
+- **Premium Fluid Animations**: Powered by `framer-motion` for seamless task additions, deletions, and layout transitions.
+- **Complete CRUD Lifecycle**: Add, Edit, and Delete tasks with ease.
+- **One-Click Completion**: Quickly toggle tasks between states with a dedicated checkmark icon and visual strikethrough styling.
+- **Confirmation & Success Feedback**:
+  - **Delete Confirmation**: Professional blurred backdrop with a shaking trash icon to prevent accidental deletions.
+  - **Success Modals**: Animated checkmark confirmation after adding or updating tasks.
+- **Search & Filter**: Quickly find tasks using the real-time search bar or localized filter buttons.
+- **Responsive UI**: Designed for all device sizes with a focus on mobile-first interaction.
 
-## React Compiler
+## 🛠️ Tech Stack
+- **Framework**: [React 19](https://react.dev/)
+- **Build Tool**: [Vite](https://vitejs.dev/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Animations**: [Framer Motion](https://www.framer.com/motion/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Styling**: Pure CSS Modules for scoped and maintainable styles.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 📦 Setup & Installation
 
-## Expanding the ESLint configuration
+### 1. Prerequisites
+Ensure you have [Node.js](https://nodejs.org/) (v18+) installed on your machine.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 2. Clone the Repository
+```bash
+git clone https://github.com/saranyadhaya/task-management-app.git
+cd task-management-app
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 3. Install Dependencies
+```bash
+npm install
 ```
+
+### 4. Run Locally
+Start the development server:
+```bash
+npm run dev
+```
+The app will be available at `http://localhost:5173/`.
+
+### 5. Build for Production
+To create a production-ready bundle:
+```bash
+npm run build
+```
+The output will be in the `dist/` directory.
+
+## 📄 User Guide
+For a detailed features walkthrough, please check the [walkthrough.md](file:///Users/mallikarjunanasokan/.gemini/antigravity/brain/dbd6b5ff-565a-4631-9227-b97cbaf70a1e/walkthrough.md) file.
+
+## 👤 Author
+**saranyawipro** - [GitHub Profile](https://github.com/saranyawipro)
+
+---
+*Developed for interview demonstration purposes.*
+
